@@ -1,7 +1,5 @@
-import React from 'react'
+import React from "react";
 
-export default function ChatScreen () {
-  return (
-    <div> </div>
-  )
+export default function ChatScreen() {
+  return <div> </div>;
 }

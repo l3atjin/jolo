@@ -1,7 +1,5 @@
-import React from 'react'
+import React from "react";
 
-export default function InboxScreen () {
-  return (
-    <div> </div>
-  )
+export default function InboxScreen() {
+  return <div> </div>;
 }
