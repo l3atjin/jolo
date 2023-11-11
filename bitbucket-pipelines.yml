@@ -7,16 +7,15 @@ image: atlassian/default-image:3
 
 pipelines:
   default:
-    - parallel:
-      - step:
-          name: 'Install'
-          script:
-            - npm install
-      - step:
-          name: 'Start'
-          script:
-            - npm start
-      - step:
-          name: 'Lint'
-          script:
-            - npm run lint
+    - step:
+        name: 'Install'
+        script:
+          - npm install
+    - step:
+        name: 'Start'
+        script:
+          - npm start
+    - step:
+        name: 'Lint'
+        script:
+          - npm run lint
