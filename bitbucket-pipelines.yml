@@ -12,10 +12,6 @@ pipelines:
         script:
           - npm install
     - step:
-        name: 'Start'
-        script:
-          - npm start
-    - step:
         name: 'Lint'
         script:
           - npm run lint
