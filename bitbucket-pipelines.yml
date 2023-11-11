@@ -9,7 +9,11 @@ pipelines:
   default:
     - parallel:
       - step:
-          name: 'Build'
+          name: 'Install'
+          script:
+            - npm install
+      - step:
+          name: 'Start'
           script:
             - npm start
       - step:
