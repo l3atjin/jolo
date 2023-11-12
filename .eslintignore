@@ -36,3 +36,6 @@ yarn-error.*
 .eslintrc.yml
 app.json
 babel.config.js
+
+# Navigation files, which require types instead of interfaces
+src/navigations/**/*tsx

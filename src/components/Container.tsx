@@ -1,17 +1,18 @@
 import { type ReactNode } from "react";
 import React from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, SafeAreaView } from "react-native";
 
 interface Props {
   children: ReactNode;
 }
 
 export const Container: React.FC<Props> = ({ children }) => {
-  return <View style={styles.boxContainer}>{children}</View>;
+  return <SafeAreaView style={styles.boxContainer}>{children}</SafeAreaView>;
 };
 
 const styles = StyleSheet.create({
   boxContainer: {
-    margin: 10,
+    marginVertical: 5,
+    marginHorizontal: 15,
   },
 });

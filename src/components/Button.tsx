@@ -37,8 +37,10 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     paddingVertical: 12,
     paddingHorizontal: 32,
-    borderRadius: 4,
-    elevation: 3,
+    borderRadius: 6,
+    elevation: 4,
+    marginVertical: 4,
+    borderWidth: 1.5,
   },
   primary: {
     backgroundColor: "#05518E",

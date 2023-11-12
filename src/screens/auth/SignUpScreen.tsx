@@ -2,10 +2,10 @@ import { Button } from "../../components/Button";
 import { Container } from "../../components/Container";
 import React from "react";
 
-export function LoginScreen() {
+export function SignUpScreen() {
   return (
     <Container>
-      <Button text="Нэвтрэх" type="primary" onPress={() => {}} />
+      <Button text="Бүртгүүлэх" type="secondary" onPress={() => {}} />
     </Container>
   );
 }
