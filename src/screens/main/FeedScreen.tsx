@@ -1,10 +1,11 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, StyleSheet } from "react-native";
 import React from "react";
+import SearchBar from "../../components/SearchBar";
 
 export function FeedScreen() {
   return (
     <View style={styles.container}>
-      <Text>Feed Screen</Text>
+      <SearchBar></SearchBar>
     </View>
   );
 }

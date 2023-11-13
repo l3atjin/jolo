@@ -6,7 +6,7 @@ import { AuthNavigator } from "./src/navigations/AuthNavigator";
 import { MainNavigator } from "./src/navigations/MainNavigator";
 
 export default function App() {
-  const isLoggedIn = false;
+  const isLoggedIn = true;
   return (
     <NavigationContainer>
       {isLoggedIn ? <MainNavigator /> : <AuthNavigator />}
