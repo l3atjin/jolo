@@ -13,6 +13,6 @@ export const Container: React.FC<Props> = ({ children }) => {
 const styles = StyleSheet.create({
   boxContainer: {
     marginVertical: 5,
-    marginHorizontal: 15,
+    marginHorizontal: 30,
   },
 });

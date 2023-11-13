@@ -1,31 +1,36 @@
 import { Pressable, StyleSheet, Text } from "react-native";
 import React from "react";
+import { joloStyles } from "../../styles/constants";
 
-interface Props {
+import type { PressableProps } from "react-native";
+
+interface Props extends PressableProps {
   text: string;
   onPress: () => void;
-  type: "primary" | "secondary";
+  type?: "primary" | "secondary";
 }
 
 /**
  * Jolo standard button, primary and secondary
  */
-export const Button: React.FC<Props> = ({ text, onPress, type }) => {
+export const Button: React.FC<Props> = (props) => {
   return (
     <Pressable
       style={[
         styles.button,
-        type === "primary" ? styles.primary : styles.secondary,
+        props.type === "secondary" ? styles.secondary : styles.primary,
       ]}
-      onPress={onPress}
+      {...props}
     >
       <Text
         style={[
           styles.text,
-          type === "primary" ? styles.textPrimary : styles.textSecondary,
+          props.type === "secondary"
+            ? styles.textSecondary
+            : styles.textPrimary,
         ]}
       >
-        {text}
+        {props.text}
       </Text>
     </Pressable>
   );
@@ -37,26 +42,26 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     paddingVertical: 12,
     paddingHorizontal: 32,
-    borderRadius: 6,
+    borderRadius: joloStyles.borderRadius,
     elevation: 4,
     marginVertical: 4,
-    borderWidth: 1.5,
+    borderWidth: joloStyles.borderWidth,
   },
   primary: {
-    backgroundColor: "#05518E",
+    backgroundColor: joloStyles.primary,
   },
   secondary: {
-    backgroundColor: "white",
-    borderColor: "#05518E",
+    backgroundColor: joloStyles.background,
+    borderColor: joloStyles.primary,
   },
   text: {
-    fontSize: 16,
+    fontSize: joloStyles.fontSize,
     lineHeight: 21,
     fontWeight: "bold",
     letterSpacing: 0.25,
   },
   textPrimary: {
-    color: "white",
+    color: joloStyles.background,
   },
   textSecondary: {
     color: "black",

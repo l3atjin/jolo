@@ -7,8 +7,15 @@ parserOptions:
 plugins:
   - react
 rules: {
-  "@typescript-eslint/explicit-function-return-type": "warn"
+  "@typescript-eslint/explicit-function-return-type": "warn",
+  "@typescript-eslint/no-misused-promises": "off"
 }
+overrides:
+  - files:
+      - 'src/navigations/**/*tsx'
+    rules:
+      # https://reactnavigation.org/docs/typescript
+      "@typescript-eslint/consistent-type-definitions": "off"
 settings: {
   "react": {
     "version": "detect"
