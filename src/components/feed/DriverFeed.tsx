@@ -1,11 +1,11 @@
 import React from "react";
 import { View } from "react-native";
-import SearchBar from "../SearchBar";
+import SearchForm from "../SearchForm";
 
 export default function DriverFeed() {
   return (
     <View>
-      <SearchBar></SearchBar>
+      <SearchForm></SearchForm>
     </View>
   );
 }
