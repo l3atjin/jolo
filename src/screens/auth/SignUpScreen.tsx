@@ -8,6 +8,7 @@ import { supabase } from "../../api";
 export function SignUpScreen(): React.JSX.Element {
   const [loading, setLoading] = useState(false);
   const [phone, setPhone] = useState("");
+  const [fullName, setFullName] = useState("");
   const [password, setPassword] = useState("");
 
   const login = async (): Promise<void> => {
@@ -16,6 +17,13 @@ export function SignUpScreen(): React.JSX.Element {
     const { error } = await supabase.auth.signUp({
       phone,
       password,
+      options: {
+        // set user metadata
+        data: {
+          phone_number: phone,
+          full_name: fullName,
+        },
+      },
     });
 
     if (error != null) {
@@ -32,6 +40,7 @@ export function SignUpScreen(): React.JSX.Element {
         keyboardType="numeric"
         onChangeText={setPhone}
       />
+      <Input placeholder="Нэр" onChangeText={setFullName} />
       <Input
         placeholder="Нууц Үг"
         secureTextEntry={true}
