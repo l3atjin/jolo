@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { Alert } from "react-native";
+import { Alert, StyleSheet } from "react-native";
 import { Button } from "../../components/elements/Button";
 import { Container } from "../../components/layout/Container";
 import Input from "../../components/elements/TextInput";
 import { supabase } from "../../api";
+import { Logo } from "../../components/elements/Logo";
 
 export function LoginScreen(): React.JSX.Element {
   const [loading, setLoading] = useState(false);
@@ -26,7 +27,8 @@ export function LoginScreen(): React.JSX.Element {
   };
 
   return (
-    <Container>
+    <Container style={styles.container}>
+      <Logo size="md" style={styles.logo} />
       <Input
         placeholder="Утасны Дугаар"
         keyboardType="numeric"
@@ -47,3 +49,8 @@ export function LoginScreen(): React.JSX.Element {
     </Container>
   );
 }
+
+const styles = StyleSheet.create({
+  logo: { alignSelf: "center" },
+  container: { justifyContent: "center" },
+});

@@ -16,11 +16,11 @@ interface Props extends PressableProps {
 export const Button: React.FC<Props> = (props) => {
   return (
     <Pressable
+      {...props}
       style={[
         styles.button,
         props.type === "secondary" ? styles.secondary : styles.primary,
       ]}
-      {...props}
     >
       <Text
         style={[
@@ -38,10 +38,10 @@ export const Button: React.FC<Props> = (props) => {
 
 const styles = StyleSheet.create({
   button: {
+    width: "100%",
     alignItems: "center",
     justifyContent: "center",
     paddingVertical: 12,
-    paddingHorizontal: 32,
     borderRadius: joloStyles.borderRadius,
     elevation: 4,
     marginVertical: 4,

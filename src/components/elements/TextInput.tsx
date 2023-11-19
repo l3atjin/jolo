@@ -1,23 +1,19 @@
 import React from "react";
-import { SafeAreaView, StyleSheet, TextInput } from "react-native";
+import { StyleSheet, TextInput } from "react-native";
 import type { TextInputProps } from "react-native";
 import { joloStyles } from "../../styles/constants";
 
 const Input: React.FC<TextInputProps> = (props) => {
-  return (
-    <SafeAreaView>
-      <TextInput style={styles.input} {...props} />
-    </SafeAreaView>
-  );
+  return <TextInput {...props} style={[props.style, styles.input]} />;
 };
 
 const styles = StyleSheet.create({
   input: {
-    marginVertical: 3,
+    marginVertical: 4,
     borderWidth: joloStyles.borderWidthThin,
     borderRadius: joloStyles.borderRadius,
     borderColor: joloStyles.primary,
-    padding: 10,
+    padding: 12,
   },
 });
 
