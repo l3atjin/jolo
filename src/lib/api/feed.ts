@@ -6,7 +6,15 @@ export type DriverPostType =
 export type Profile = Database["public"]["Tables"]["profiles"]["Row"];
 export type Location = Database["public"]["Tables"]["locations"]["Row"];
 
-export async function fetchDriverPosts(): Promise<DriverPostType[]> {
+export type RequestResponse = Awaited<ReturnType<typeof fetchDriverPosts>>;
+
+export async function fetchDriverPosts(params?: {
+  departure?: string;
+  destination?: string;
+  date?: Date;
+  seat?: number;
+  sortBy?: "departure_day";
+}): Promise<DriverPostType[]> {
   // const { data: { user } } = await supabase.auth.getUser();
   const query = supabase.from("driver_posts").select(`
       id,
