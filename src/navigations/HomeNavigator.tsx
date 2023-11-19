@@ -1,7 +1,7 @@
 import { FeedScreen } from "../screens/main/FeedScreen";
-import { CreatePostScreen } from "../screens/main/CreatePostScreen";
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import PostDetailsScreen from "../screens/main/PostDetailsScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -12,7 +12,7 @@ export function HomeNavigator() {
       screenOptions={{ headerShown: false }}
     >
       <Stack.Screen name="Feed" component={FeedScreen} />
-      <Stack.Screen name="Post" component={CreatePostScreen} />
+      <Stack.Screen name="Post" component={PostDetailsScreen} />
     </Stack.Navigator>
   );
 }

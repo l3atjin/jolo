@@ -5,6 +5,7 @@ import TripScreen from "../screens/main/TripScreen";
 import ProfileScreen from "../screens/main/ProfileScreen";
 import InboxScreen from "../screens/main/InboxScreen";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { CreatePostScreen } from "../screens/main/CreatePostScreen";
 
 // const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -24,6 +25,7 @@ export function MainNavigator() {
       screenOptions={{ headerShown: false }}
     >
       <Tab.Screen name="Home" component={HomeNavigator} />
+      <Tab.Screen name="CreatePost" component={CreatePostScreen} />
       <Tab.Screen name="Trips" component={TripScreen} />
       <Tab.Screen name="Inbox" component={InboxScreen} />
       <Tab.Screen name="Profile" component={ProfileScreen} />
