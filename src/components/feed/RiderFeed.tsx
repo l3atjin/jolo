@@ -6,9 +6,10 @@ import SearchForm from "../SearchForm";
 
 export type RequestResponse = Awaited<ReturnType<typeof fetchDriverPosts>>;
 
-export default function RiderFeed(): JSX.Element {
+export default function RiderFeed(): React.JSX.Element {
   const [posts, setPosts] = useState<RequestResponse | null>(null);
 
+  // initial fetch
   useEffect(() => {
     const fetchPosts = async (): Promise<void> => {
       const riderPosts = await fetchDriverPosts();
@@ -20,19 +21,23 @@ export default function RiderFeed(): JSX.Element {
 
   return (
     <View style={styles.container}>
-      <Text>FEED</Text>
+      <Text>find a ride!</Text>
       <SearchForm />
-      <FlatList
-        data={posts}
-        renderItem={({ item }) => <DriverPost postDetails={item} />}
-        keyExtractor={(item) => item.id}
-      />
+      <View style={styles.posts}>
+        <FlatList
+          data={posts}
+          renderItem={({ item }) => <DriverPost postDetails={item} />}
+          keyExtractor={(item) => item.id}
+        />
+      </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    margin: 40,
+    marginTop: 60,
+    justifyContent: "center",
   },
+  posts: {},
 });

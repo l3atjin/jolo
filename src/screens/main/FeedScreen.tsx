@@ -1,13 +1,13 @@
-import { View } from "react-native";
+import { View, StyleSheet } from "react-native";
 import React from "react";
 import { useUserType } from "../../context/UserTypeProvider";
 import DriverFeed from "../../components/feed/DriverFeed";
 import RiderFeed from "../../components/feed/RiderFeed";
 
-export function FeedScreen() {
+export function FeedScreen(): React.JSX.Element {
   const [userType] = useUserType();
   return (
-    <View>
+    <View style={styles.container}>
       {userType === "rider" ? (
         <RiderFeed></RiderFeed>
       ) : (
@@ -17,11 +17,9 @@ export function FeedScreen() {
   );
 }
 
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     backgroundColor: "#fff",
-//     alignItems: "center",
-//     justifyContent: "center",
-//   },
-// });
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  posts: {},
+});
