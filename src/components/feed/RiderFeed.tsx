@@ -1,3 +1,4 @@
+import { useNavigation } from "@react-navigation/native";
 import React, { useEffect, useState } from "react";
 import {
   FlatList,
@@ -5,6 +6,7 @@ import {
   StyleSheet,
   Text,
   ActivityIndicator,
+  Pressable,
 } from "react-native";
 import { fetchDriverPosts, type RequestResponse } from "../../lib/api/feed";
 import DriverPost from "../DriverPost";
@@ -14,6 +16,7 @@ import { type SearchParams } from "./types";
 export default function RiderFeed(): React.JSX.Element {
   const [posts, setPosts] = useState<RequestResponse | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+  const navigation = useNavigation();
 
   // initial fetch
   useEffect(() => {
@@ -42,7 +45,15 @@ export default function RiderFeed(): React.JSX.Element {
         ) : (
           <FlatList
             data={posts}
-            renderItem={({ item }) => <DriverPost postDetails={item} />}
+            renderItem={({ item }) => (
+              <Pressable
+                onPress={() => {
+                  navigation.navigate("Post", item);
+                }}
+              >
+                <DriverPost postDetails={item} />
+              </Pressable>
+            )}
             keyExtractor={(item) => item.id}
           />
         )}
