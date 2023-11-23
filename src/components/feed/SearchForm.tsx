@@ -1,7 +1,9 @@
 import React, { useState } from "react";
-import { View, Button, TextInput, StyleSheet } from "react-native";
+import { View, StyleSheet } from "react-native";
 import DateTimePicker from "@react-native-community/datetimepicker";
-import { type SearchFormProps } from "./feed/types";
+import Input from "../elements/TextInput";
+import { Button } from "../elements/Button";
+import { type SearchFormProps } from "./types";
 
 export default function SearchForm({
   onSubmitSearch,
@@ -11,7 +13,6 @@ export default function SearchForm({
     destination: "",
     date: new Date(),
     seats: 0,
-    //  ...add more search parameters as needed
   });
 
   const handleChange = (name: string, value: string | Date | undefined) => {
@@ -28,16 +29,14 @@ export default function SearchForm({
 
   return (
     <View style={styles.container}>
-      <TextInput
-        style={[styles.locInput]}
-        placeholder="Departure"
+      <Input
+        placeholder="Хаанаас"
         onChangeText={(val) => {
           handleChange("departure", val);
         }}
       />
-      <TextInput
-        style={[styles.locInput]}
-        placeholder="Destination"
+      <Input
+        placeholder="Хаашаа"
         onChangeText={(val) => {
           handleChange("destination", val);
         }}
@@ -51,16 +50,15 @@ export default function SearchForm({
             handleChange("date", selectedDate);
           }}
         />
-        <TextInput
-          style={[styles.seat]}
-          placeholder="Seats"
+        <Input
+          placeholder="Хэдүүлээ"
           onChangeText={(val) => {
             handleChange("seats", val);
           }}
         />
       </View>
 
-      <Button title="Search" onPress={onSearch} />
+      <Button text="Хайх" type="primary" onPress={onSearch} />
     </View>
   );
 }
@@ -68,23 +66,10 @@ export default function SearchForm({
 const styles = StyleSheet.create({
   container: {
     alignItems: "center",
-    paddingHorizontal: 10,
-    borderWidth: 1,
-  },
-  locInput: {
-    borderWidth: 2,
-    borderTopEndRadius: 5,
-    borderTopStartRadius: 5,
-    borderBottomEndRadius: 5,
-    borderBottomStartRadius: 5,
     width: "100%",
-    height: "20%",
   },
   dateSeat: {
     flexDirection: "row",
-    borderWidth: 2,
-    borderRadius: 5,
-    width: "100%",
   },
   date: {},
   seat: {},

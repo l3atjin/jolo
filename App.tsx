@@ -1,6 +1,6 @@
 import { NavigationContainer } from "@react-navigation/native";
-import { useEffect, useState } from "react";
-import { Session } from "@supabase/supabase-js";
+import React, { useEffect, useState } from "react";
+import { type Session } from "@supabase/supabase-js";
 import { supabase } from "./src/api";
 import { UserTypeProvider } from "./src/context/UserTypeProvider";
 
@@ -13,7 +13,7 @@ export default function App() {
 
   // Get supabase session data and update if necessary
   useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
+    void supabase.auth.getSession().then(({ data: { session } }) => {
       setSession(session);
     });
 
@@ -21,11 +21,10 @@ export default function App() {
       setSession(session);
     });
   }, []);
-
   return (
     <UserTypeProvider>
       <NavigationContainer>
-        {session && session.user ? <MainNavigator /> : <AuthNavigator />}
+        {session && session?.user ? <MainNavigator /> : <AuthNavigator />}
       </NavigationContainer>
     </UserTypeProvider>
   );

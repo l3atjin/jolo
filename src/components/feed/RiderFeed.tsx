@@ -4,14 +4,36 @@ import {
   FlatList,
   View,
   StyleSheet,
-  Text,
   ActivityIndicator,
   Pressable,
 } from "react-native";
 import { fetchDriverPosts, type RequestResponse } from "../../lib/api/feed";
-import DriverPost from "../DriverPost";
-import SearchForm from "../SearchForm";
+import DriverPost from "./DriverPost";
+import { Container } from "../layout/Container";
+import SearchForm from "./SearchForm";
 import { type SearchParams } from "./types";
+
+export interface PostDetails {
+  id: string;
+  date: string;
+  time: string;
+  details: string;
+  fee: number;
+  seats: number;
+  author: Profile;
+  departure: Location;
+  destination: Location;
+}
+
+export interface Profile {
+  full_name: string;
+  avatar_url?: string;
+  phone_number: string;
+}
+
+export interface Location {
+  location_name: string;
+}
 
 export default function RiderFeed(): React.JSX.Element {
   const [posts, setPosts] = useState<RequestResponse | null>(null);
@@ -36,8 +58,7 @@ export default function RiderFeed(): React.JSX.Element {
   }
 
   return (
-    <View style={styles.container}>
-      <Text>find a ride!</Text>
+    <Container>
       <SearchForm onSubmitSearch={submitSearch} />
       <View style={styles.posts}>
         {isLoading ? (
@@ -51,21 +72,18 @@ export default function RiderFeed(): React.JSX.Element {
                   navigation.navigate("Post", item);
                 }}
               >
-                <DriverPost postDetails={item} />
+                <DriverPost props={item} />
               </Pressable>
             )}
             keyExtractor={(item) => item.id}
           />
         )}
       </View>
-    </View>
+    </Container>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    marginTop: 60,
-    justifyContent: "center",
-  },
+  container: {},
   posts: {},
 });

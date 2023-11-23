@@ -2,12 +2,19 @@ import { type Database } from "../supabase";
 import { supabase } from "./supabase";
 import { getLocationId } from "./utils";
 
-export type DriverPostType =
-  Database["public"]["Tables"]["driver_posts"]["Row"];
+export type DriverPost = Database["public"]["Tables"]["driver_posts"]["Row"];
 export type Profile = Database["public"]["Tables"]["profiles"]["Row"];
 export type Location = Database["public"]["Tables"]["locations"]["Row"];
 
 export type RequestResponse = Awaited<ReturnType<typeof fetchDriverPosts>>;
+
+export type DriverPostType = Array<
+  DriverPost & {
+    author: Profile;
+    departure: Location;
+    destination: Location;
+  }
+>;
 
 export async function fetchDriverPosts(searchParams?: {
   departure?: string;
@@ -15,7 +22,7 @@ export async function fetchDriverPosts(searchParams?: {
   date?: Date;
   seats?: number;
   sortBy?: "departure_day";
-}): Promise<DriverPostType[]> {
+}): Promise<DriverPostType> {
   // const { data: { user } } = await supabase.auth.getUser();
   let query = supabase.from("driver_posts").select(`
       id,
@@ -53,12 +60,14 @@ export async function fetchDriverPosts(searchParams?: {
     Array<
       DriverPostType & {
         author: Profile;
-        departure_location: Location;
-        destination_location: Location;
+        departure: Location;
+        destination: Location;
       }
     >
   >();
 
+  console.log(JSON.stringify(data, null, 2));
+  console.log("fetched data is", JSON.stringify(data, null, 2));
   if (error) {
     console.log("Error fetching driver posts: ", error);
     throw error;

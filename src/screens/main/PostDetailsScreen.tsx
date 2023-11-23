@@ -1,47 +1,43 @@
 import React from "react";
 import { Text, View, StyleSheet, Image } from "react-native";
-import type { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { Button } from "../../components/Button";
+import { Button } from "../../components/elements/Button";
+import { Container } from "../../components/layout/Container";
 
 // eslint-disable-next-line @typescript-eslint/consistent-type-definitions
-type HomeNavigatorParamList = {
-  Feed: undefined;
-  Post: any;
-};
 
-type Props = NativeStackScreenProps<HomeNavigatorParamList, "Post">;
-
-export default function PostDetailsScreen({ route, navigation }: Props) {
+export default function PostDetailsScreen({ route, navigation }: any) {
   const postDetails = route.params;
   console.log(postDetails);
   return (
-    <View style={styles.container}>
-      <Text>POST DETAILS SCREEN</Text>
-      <Button
-        text="Go back"
-        onPress={() => {
-          navigation.goBack();
-        }}
-        type={"primary"}
-      />
-      <View style={styles.box}>
-        <Text>Driver info:</Text>
-        <Image
-          style={styles.avatar}
-          source={{
-            uri: "https://reactnative.dev/img/tiny_logo.png",
+    <Container>
+      <View>
+        <Text>POST DETAILS SCREEN</Text>
+        <Button
+          text="Go back"
+          onPress={() => {
+            navigation.goBack();
           }}
+          type={"primary"}
         />
-        <Text>{postDetails?.author.full_name}</Text>
-        <Text>{postDetails?.author.phone_number}</Text>
-      </View>
+        <View style={styles.box}>
+          <Text>Driver info:</Text>
+          <Image
+            style={styles.avatar}
+            source={{
+              uri: "https://reactnative.dev/img/tiny_logo.png",
+            }}
+          />
+          <Text>{postDetails?.author.full_name}</Text>
+          <Text>{postDetails?.author.phone_number}</Text>
+        </View>
 
-      <View style={styles.box}>
-        <Text>Destination: {postDetails?.destination.location_name}</Text>
-        <Text>Departure: {postDetails?.departure.location_name}</Text>
+        <View style={styles.box}>
+          <Text>Destination: {postDetails?.destination.location_name}</Text>
+          <Text>Departure: {postDetails?.departure.location_name}</Text>
+        </View>
+        <Button text="Request" onPress={() => {}} type={"primary"} />
       </View>
-      <Button text="Request" onPress={() => {}} type={"primary"} />
-    </View>
+    </Container>
   );
 }
 
