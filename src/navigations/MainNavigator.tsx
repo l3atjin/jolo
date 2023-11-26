@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 import React from "react";
-import { HomeNavigator } from "./HomeNavigator";
+import HomeNavigator from "./HomeNavigator";
 import TripScreen from "../screens/main/TripScreen";
 import ProfileScreen from "../screens/main/ProfileScreen";
 import InboxScreen from "../screens/main/InboxScreen";
@@ -10,7 +10,7 @@ import { CreatePostScreen } from "../screens/main/CreatePostScreen";
 // const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
-export function MainNavigator() {
+export default function MainNavigator() {
   return (
     // <Stack.Navigator>
     //   <Stack.Screen name="Home" component={HomeNavigator} />

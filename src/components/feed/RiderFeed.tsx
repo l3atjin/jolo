@@ -8,29 +8,34 @@ import {
   ActivityIndicator,
   Pressable,
 } from "react-native";
-import { fetchDriverPosts, type RequestResponse } from "../../lib/api/feed";
+import {
+  fetchDriverPosts,
+  type DriverPostsResponse,
+} from "../../lib/api/posts";
 import DriverPost from "../DriverPost";
-import SearchForm from "../SearchForm";
+import SearchForm from "./SearchForm";
 import { type SearchParams } from "./types";
 
 export default function RiderFeed(): React.JSX.Element {
-  const [posts, setPosts] = useState<RequestResponse | null>(null);
+  const [posts, setPosts] = useState<DriverPostsResponse | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const navigation = useNavigation();
 
   // initial fetch
   useEffect(() => {
-    const fetchPosts = async (): Promise<void> => {
+    const fetchPosts = async () => {
       const riderPosts = await fetchDriverPosts();
       setPosts(riderPosts);
     };
-    void fetchPosts();
-    console.log(JSON.stringify(posts, null, 2));
+
+    fetchPosts().catch((error) => {
+      console.error(error);
+    });
   }, []);
 
   async function submitSearch(searchParam: SearchParams): Promise<void> {
     setIsLoading(true);
-    const newData: RequestResponse = await fetchDriverPosts(searchParam);
+    const newData: DriverPostsResponse = await fetchDriverPosts(searchParam);
     setPosts(newData);
     setIsLoading(false);
   }
@@ -51,7 +56,7 @@ export default function RiderFeed(): React.JSX.Element {
                   navigation.navigate("Post", item);
                 }}
               >
-                <DriverPost postDetails={item} />
+                <DriverPost post={item} />
               </Pressable>
             )}
             keyExtractor={(item) => item.id}

@@ -5,7 +5,7 @@ import PostDetailsScreen from "../screens/main/PostDetailsScreen";
 
 const Stack = createNativeStackNavigator();
 
-export function HomeNavigator() {
+export default function HomeNavigator() {
   return (
     <Stack.Navigator
       initialRouteName="Feed"

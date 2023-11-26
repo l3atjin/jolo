@@ -3,7 +3,7 @@ export interface SearchParams {
   destination?: string;
   date?: Date;
   seat?: number;
-  sortBy?: "departure_day";
+  sortBy?: "date" | "fee";
 }
 
 export interface SearchFormProps {

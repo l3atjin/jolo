@@ -1,7 +1,7 @@
 import React from "react";
 import { Text, View, StyleSheet, Image } from "react-native";
 import type { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { Button } from "../../components/Button";
+import Button from "../../components/elements/Button";
 
 // eslint-disable-next-line @typescript-eslint/consistent-type-definitions
 type HomeNavigatorParamList = {
@@ -13,7 +13,6 @@ type Props = NativeStackScreenProps<HomeNavigatorParamList, "Post">;
 
 export default function PostDetailsScreen({ route, navigation }: Props) {
   const postDetails = route.params;
-  console.log(postDetails);
   return (
     <View style={styles.container}>
       <Text>POST DETAILS SCREEN</Text>

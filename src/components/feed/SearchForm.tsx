@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { View, Button, TextInput, StyleSheet } from "react-native";
 import DateTimePicker from "@react-native-community/datetimepicker";
-import { type SearchFormProps } from "./feed/types";
+import { type SearchFormProps } from "./types";
 
 export default function SearchForm({
   onSubmitSearch,
@@ -22,7 +22,6 @@ export default function SearchForm({
   };
 
   const onSearch = () => {
-    console.log("params are", JSON.stringify(searchParams, null, 2));
     onSubmitSearch(searchParams);
   };
 
