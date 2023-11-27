@@ -9,7 +9,6 @@ import {
 } from "react-native";
 import { fetchDriverPosts, type RequestResponse } from "../../lib/api/feed";
 import DriverPost from "./DriverPost";
-import { Container } from "../layout/Container";
 import SearchForm from "./SearchForm";
 import { type SearchParams } from "./types";
 
@@ -58,7 +57,7 @@ export default function RiderFeed(): React.JSX.Element {
   }
 
   return (
-    <Container>
+    <View>
       <SearchForm onSubmitSearch={submitSearch} />
       <View style={styles.posts}>
         {isLoading ? (
@@ -72,14 +71,14 @@ export default function RiderFeed(): React.JSX.Element {
                   navigation.navigate("Post", item);
                 }}
               >
-                <DriverPost props={item} />
+                <DriverPost postDetails={item} />
               </Pressable>
             )}
             keyExtractor={(item) => item.id}
           />
         )}
       </View>
-    </Container>
+    </View>
   );
 }
 

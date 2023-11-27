@@ -3,7 +3,7 @@ import { Alert, StyleSheet } from "react-native";
 import { Button } from "../../components/elements/Button";
 import { Container } from "../../components/layout/Container";
 import Input from "../../components/elements/TextInput";
-import { supabase } from "../../api";
+import { supabase } from "../../lib/api";
 import { Logo } from "../../components/elements/Logo";
 
 export function LoginScreen(): React.JSX.Element {

@@ -1,6 +1,8 @@
-import { supabase } from "./supabase";
+import { supabase } from "./index";
 
-export async function getLocationId(locationName: string) {
+export async function getLocationId(
+  locationName: string,
+): Promise<string | null> {
   const { data: locationData, error } = await supabase
     .from("locations")
     .select("id")
@@ -12,4 +14,18 @@ export async function getLocationId(locationName: string) {
   }
 
   return locationData[0].id;
+}
+
+export async function insertIntoTable(
+  tableName: string,
+  data: any,
+): Promise<void> {
+  const { data: response, error } = await supabase.from(tableName).insert(data);
+
+  // handle response
+  if (error) {
+    console.error(error);
+  } else {
+    console.log(response);
+  }
 }

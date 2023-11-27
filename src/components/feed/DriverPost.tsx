@@ -1,8 +1,11 @@
 import React from "react";
 import { View, Text, StyleSheet, Image } from "react-native";
-import { type PostDetails } from "./RiderFeed";
 
-export default function DriverPost({ props }: PostDetails): JSX.Element {
+interface PostProps {
+  postDetails: any;
+}
+
+export default function DriverPost({ postDetails }: PostProps): JSX.Element {
   return (
     <View style={styles.container}>
       <View style={styles.row}>
@@ -14,22 +17,23 @@ export default function DriverPost({ props }: PostDetails): JSX.Element {
             }}
           />
           <View>
-            <Text>{props.author.full_name}</Text>
-            <Text>{props.author.phone_number}</Text>
+            <Text>{postDetails.author.full_name}</Text>
+            <Text>{postDetails.author.phone_number}</Text>
           </View>
         </View>
         <Text>
-          {props.departure.location_name} - {props.destination.location_name}
+          {postDetails.departure.location_name} -{" "}
+          {postDetails.destination.location_name}
         </Text>
       </View>
 
       <View style={styles.row}>
         <View>
-          <Text>Date: {props.date}</Text>
+          <Text>Date: {postDetails.date}</Text>
           <Text>Car model: Prius</Text>
-          <Text>Available seats: {props.seats}</Text>
+          <Text>Available seats: {postDetails.seats}</Text>
         </View>
-        <Text>Fee: {props.fee}</Text>
+        <Text>Fee: {postDetails.fee}</Text>
       </View>
     </View>
   );

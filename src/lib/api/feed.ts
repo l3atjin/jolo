@@ -1,5 +1,5 @@
-import { type Database } from "../supabase";
-import { supabase } from "./supabase";
+import { type Database } from "./types/supabase";
+import { supabase } from "./index";
 import { getLocationId } from "./utils";
 
 export type DriverPost = Database["public"]["Tables"]["driver_posts"]["Row"];
