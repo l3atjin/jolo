@@ -8,8 +8,9 @@ plugins:
   - react
 rules: {
   "@typescript-eslint/explicit-function-return-type": "warn",
-  "@typescript-eslint/strict-boolean-expressions" : "warn",
-  "@typescript-eslint/no-misused-promises": "off"
+  "@typescript-eslint/no-misused-promises": "off",
+  "@typescript-eslint/strict-boolean-expressions" : "off",
+  "@typescript-eslint/prefer-optional-chain": "warn"
 }
 overrides:
   - files:

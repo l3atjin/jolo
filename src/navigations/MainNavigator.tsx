@@ -6,24 +6,26 @@ import ProfileScreen from "../screens/main/ProfileScreen";
 import InboxScreen from "../screens/main/InboxScreen";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { CreatePostScreen } from "../screens/main/CreatePostScreen";
+import SwitchScreen from "../screens/main/SwitchScreen";
 
-// const Stack = createNativeStackNavigator();
-const Tab = createBottomTabNavigator();
+export type MainTabParamList = {
+  Switch: undefined;
+  Home: undefined;
+  CreatePost: undefined;
+  Trips: undefined;
+  Inbox: undefined;
+  Profile: undefined;
+};
+
+const Tab = createBottomTabNavigator<MainTabParamList>();
 
 export default function MainNavigator() {
   return (
-    // <Stack.Navigator>
-    //   <Stack.Screen name="Home" component={HomeNavigator} />
-    //   <Stack.Screen name="Post" component={PostDetailsScreen} />
-    //   <Stack.Screen name="Inbox" component={InboxScreen} />
-    //   <Stack.Screen name="Chat" component={ChatScreen} />
-    //   <Stack.Screen name="Profile" component={ProfileScreen} />
-    //   <Stack.Screen name="Trips" component={TripScreen} />
-    // </Stack.Navigator>
     <Tab.Navigator
-      initialRouteName="Home"
+      initialRouteName="Switch"
       screenOptions={{ headerShown: false }}
     >
+      <Tab.Screen name="Switch" component={SwitchScreen} />
       <Tab.Screen name="Home" component={HomeNavigator} />
       <Tab.Screen name="CreatePost" component={CreatePostScreen} />
       <Tab.Screen name="Trips" component={TripScreen} />

@@ -1,19 +1,16 @@
-import { View, Text, StyleSheet } from "react-native";
 import React from "react";
+import { useUserType } from "../../context/UserTypeProvider";
+import RiderPostForm from "../../components/createPost/RiderPostForm";
+import DriverPostForm from "../../components/createPost/DriverPostForm";
+import Container from "../../components/layout/Container";
 
-export function CreatePostScreen() {
+export function CreatePostScreen(): React.JSX.Element {
+  const [userType] = useUserType();
+
   return (
-    <View style={styles.container}>
-      <Text>Create Post</Text>
-    </View>
+    <Container>
+      {userType === "rider" && <RiderPostForm />}
+      {userType === "driver" && <DriverPostForm />}
+    </Container>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});

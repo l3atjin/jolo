@@ -1,8 +1,16 @@
 import { supabase } from ".";
+import { Database } from "./types/supabase";
 
 export type DriverPostsResponse = Awaited<ReturnType<typeof fetchDriverPosts>>;
 export type DriverPostResponse = DriverPostsResponse[0];
+export type DriverPostInsert =
+  Database["public"]["Tables"]["driver_posts"]["Insert"];
 
+/**
+ * Fetches driver posts according to search
+ * @param searchParams post search parameters
+ * @returns list of driver posts
+ */
 export async function fetchDriverPosts(searchParams?: {
   departureId?: string;
   destinationId?: string;
@@ -51,4 +59,17 @@ export async function fetchDriverPosts(searchParams?: {
   }
 
   return data;
+}
+
+/**
+ * Inserts a driver post
+ * @param driverPost Driver post row insert type
+ */
+export async function insertDriverPost(
+  driverPost: DriverPostInsert,
+): Promise<void> {
+  const { error } = await supabase.from("driver_posts").insert(driverPost);
+  if (error) {
+    throw error;
+  }
 }

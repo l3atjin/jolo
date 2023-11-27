@@ -3,9 +3,14 @@ import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import PostDetailsScreen from "../screens/main/PostDetailsScreen";
 
-const Stack = createNativeStackNavigator();
+export type HomeStackParamList = {
+  Feed: undefined;
+  Post: any;
+};
 
-export default function HomeNavigator() {
+const Stack = createNativeStackNavigator<HomeStackParamList>();
+
+export default function HomeNavigator(): React.JSX.Element {
   return (
     <Stack.Navigator
       initialRouteName="Feed"

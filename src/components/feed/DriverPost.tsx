@@ -1,12 +1,12 @@
 import React from "react";
 import { View, Text, StyleSheet, Image } from "react-native";
-import type { DriverPostResponse } from "../lib/api/posts";
+import type { DriverPostResponse } from "../../lib/api/driver_posts";
 
-interface Props {
-  post: DriverPostResponse;
+interface PostProps {
+  postDetails: DriverPostResponse;
 }
 
-const DriverPost: React.FC<Props> = ({ post }) => {
+export default function DriverPost({ postDetails }: PostProps): JSX.Element {
   return (
     <View style={styles.container}>
       <View style={styles.row}>
@@ -18,27 +18,28 @@ const DriverPost: React.FC<Props> = ({ post }) => {
             }}
           />
           <View>
-            <Text>{post.author?.full_name}</Text>
-            <Text>{post.author?.phone_number}</Text>
+            <Text>{postDetails.author?.full_name}</Text>
+            <Text>{postDetails.author?.phone_number}</Text>
           </View>
         </View>
         <Text>
-          {post.departure?.location_name} - {post.destination?.location_name}
+          {postDetails.departure?.location_name} -{" "}
+          {postDetails.destination?.location_name}
         </Text>
       </View>
 
       <View style={styles.row}>
         <View>
-          <Text>Date: {post.date}</Text>
-          <Text>Car model: {post.vehicle?.make_model}</Text>
-          <Text>Car plate: {post.vehicle?.plate}</Text>
-          <Text>Available seats: {post.seats}</Text>
+          <Text>Date: {postDetails.date}</Text>
+          <Text>Car model: {postDetails.vehicle?.make_model}</Text>
+          <Text>Car plate: {postDetails.vehicle?.plate}</Text>
+          <Text>Available seats: {postDetails.seats}</Text>
         </View>
-        <Text>Fee: {post.fee}</Text>
+        <Text>Fee: {postDetails.fee}</Text>
       </View>
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -62,5 +63,3 @@ const styles = StyleSheet.create({
     height: 50,
   },
 });
-
-export default DriverPost;
