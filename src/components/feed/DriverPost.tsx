@@ -1,6 +1,7 @@
 import React from "react";
-import { View, Text, StyleSheet, Image } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 import type { DriverPostResponse } from "../../lib/api/driver_posts";
+import Avatar from "../elements/Avatar";
 
 interface PostProps {
   postDetails: DriverPostResponse;
@@ -11,12 +12,7 @@ export default function DriverPost({ postDetails }: PostProps): JSX.Element {
     <View style={styles.container}>
       <View style={styles.row}>
         <View style={styles.loc}>
-          <Image
-            style={styles.avatar}
-            source={{
-              uri: "https://reactnative.dev/img/tiny_logo.png",
-            }}
-          />
+          <Avatar uri={"https://reactnative.dev/img/tiny_logo.png"} />
           <View>
             <Text>{postDetails.author?.full_name}</Text>
             <Text>{postDetails.author?.phone_number}</Text>
