@@ -1,7 +1,7 @@
 import { NavigationContainer } from "@react-navigation/native";
 import React, { useEffect, useState } from "react";
 import { type Session } from "@supabase/supabase-js";
-import { supabase } from "./src/lib/api";
+import { supabase } from "./src/lib/api/index";
 import { UserTypeProvider } from "./src/context/UserTypeProvider";
 
 // top level navigators

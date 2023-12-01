@@ -1,5 +1,5 @@
 import { supabase } from ".";
-import { Database } from "./types/supabase";
+import { type Database } from "./types/supabase";
 
 export type RiderPostInsert =
   Database["public"]["Tables"]["rider_posts"]["Insert"];

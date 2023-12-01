@@ -19,7 +19,7 @@ export default function RiderPostForm(): React.JSX.Element {
     destination_id: "",
   });
 
-  // handle post insert request
+  // handle post insert request Password2
   const handleSubmit = async () => {
     const {
       data: { user },
@@ -41,6 +41,8 @@ export default function RiderPostForm(): React.JSX.Element {
       time,
       user_id: user.id,
     };
+
+    console.log(JSON.stringify(row, null, 2));
 
     await insertRiderPost(row);
   };
