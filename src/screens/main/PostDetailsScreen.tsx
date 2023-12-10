@@ -2,9 +2,34 @@ import React from "react";
 import { Text, View, StyleSheet, Image } from "react-native";
 import Button from "../../components/elements/Button";
 import Container from "../../components/layout/Container";
+import { supabase } from "../../lib/api";
+import {
+  insertDriverRequest,
+  type DriverRequestInsert,
+} from "../../lib/api/driver_posts";
 
-export default function PostDetailsScreen({ route, navigation }: any) {
+export default function PostDetailsScreen({
+  route,
+  navigation,
+}: any): React.JSX.Element {
   const postDetails = route.params;
+
+  const onRequest = async () => {
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+    if (user) {
+      const row: DriverRequestInsert = {
+        post_id: postDetails.id,
+        status: "REQUESTED",
+        rider_id: user?.id,
+      };
+      await insertDriverRequest(row);
+    } else {
+      console.error("User not logged in.");
+    }
+  };
+
   return (
     <Container>
       <View>
@@ -32,7 +57,7 @@ export default function PostDetailsScreen({ route, navigation }: any) {
           <Text>Destination: {postDetails?.destination.location_name}</Text>
           <Text>Departure: {postDetails?.departure.location_name}</Text>
         </View>
-        <Button text="Request" onPress={() => {}} type={"primary"} />
+        <Button text="Request" onPress={onRequest} type={"primary"} />
       </View>
     </Container>
   );

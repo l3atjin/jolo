@@ -27,7 +27,7 @@ export default function SearchForm({
   };
 
   return (
-    <View style={styles.container}>
+    <View>
       <Input
         placeholder="Хаанаас"
         onChangeText={(val) => {

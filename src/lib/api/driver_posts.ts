@@ -1,10 +1,13 @@
 import { supabase } from ".";
-import { Database } from "./types/supabase";
+import { type Database } from "./types/supabase";
 
 export type DriverPostsResponse = Awaited<ReturnType<typeof fetchDriverPosts>>;
 export type DriverPostResponse = DriverPostsResponse[0];
 export type DriverPostInsert =
   Database["public"]["Tables"]["driver_posts"]["Insert"];
+
+export type DriverRequestInsert =
+  Database["public"]["Tables"]["driver_requests"]["Insert"];
 
 /**
  * Fetches driver posts according to search
@@ -72,4 +75,16 @@ export async function insertDriverPost(
   if (error) {
     throw error;
   }
+}
+
+export async function insertDriverRequest(
+  driverRequest: DriverRequestInsert,
+): Promise<void> {
+  const { error } = await supabase
+    .from("driver_requests")
+    .insert(driverRequest);
+  if (error) {
+    throw error;
+  }
+  console.log(`row added`, driverRequest);
 }

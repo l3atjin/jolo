@@ -3,7 +3,7 @@ export type Json =
   | number
   | boolean
   | null
-  | { [key: string]: Json | undefined }
+  | { [key: string]: Json }
   | Json[];
 
 export interface Database {
@@ -97,6 +97,43 @@ export interface Database {
             foreignKeyName: "driver_posts_vehicle_id_fkey";
             columns: ["vehicle_id"];
             referencedRelation: "vehicles";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
+      driver_requests: {
+        Row: {
+          created_at: string | null;
+          id: string;
+          post_id: string;
+          rider_id: string;
+          status: Database["public"]["Enums"]["trip_status"];
+        };
+        Insert: {
+          created_at?: string | null;
+          id?: string;
+          post_id: string;
+          rider_id: string;
+          status: Database["public"]["Enums"]["trip_status"];
+        };
+        Update: {
+          created_at?: string | null;
+          id?: string;
+          post_id?: string;
+          rider_id?: string;
+          status?: Database["public"]["Enums"]["trip_status"];
+        };
+        Relationships: [
+          {
+            foreignKeyName: "driver_requests_post_id_fkey";
+            columns: ["post_id"];
+            referencedRelation: "driver_posts";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "driver_requests_rider_id_fkey";
+            columns: ["rider_id"];
+            referencedRelation: "profiles";
             referencedColumns: ["id"];
           },
         ];
@@ -404,6 +441,12 @@ export interface Database {
             foreignKeyName: "objects_bucketId_fkey";
             columns: ["bucket_id"];
             referencedRelation: "buckets";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "objects_owner_fkey";
+            columns: ["owner"];
+            referencedRelation: "users";
             referencedColumns: ["id"];
           },
         ];
