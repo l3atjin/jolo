@@ -236,6 +236,43 @@ export interface Database {
           },
         ];
       };
+      rider_requests: {
+        Row: {
+          created_at: string | null;
+          "driver_id ": string | null;
+          id: string;
+          post_id: string | null;
+          status: Database["public"]["Enums"]["trip_status"] | null;
+        };
+        Insert: {
+          created_at?: string | null;
+          "driver_id "?: string | null;
+          id?: string;
+          post_id?: string | null;
+          status?: Database["public"]["Enums"]["trip_status"] | null;
+        };
+        Update: {
+          created_at?: string | null;
+          "driver_id "?: string | null;
+          id?: string;
+          post_id?: string | null;
+          status?: Database["public"]["Enums"]["trip_status"] | null;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "rider_requests_driver_id _fkey";
+            columns: ["driver_id "];
+            referencedRelation: "profiles";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "rider_requests_post_id_fkey";
+            columns: ["post_id"];
+            referencedRelation: "rider_posts";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
       trips: {
         Row: {
           created_at: string | null;
