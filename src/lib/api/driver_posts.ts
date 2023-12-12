@@ -78,6 +78,7 @@ export async function insertDriverPost(
   if (error) {
     throw error;
   }
+  console.log(`row added`, driverPost);
 }
 
 export async function insertDriverRequest(
