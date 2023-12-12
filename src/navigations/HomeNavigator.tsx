@@ -2,10 +2,11 @@ import { FeedScreen } from "../screens/main/FeedScreen";
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import PostDetailsScreen from "../screens/main/PostDetailsScreen";
+import { type DriverPostResponse } from "../lib/api/driver_posts";
 
 export type HomeStackParamList = {
   Feed: undefined;
-  Post: any;
+  Post: DriverPostResponse;
 };
 
 const Stack = createNativeStackNavigator<HomeStackParamList>();

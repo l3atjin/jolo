@@ -1,5 +1,6 @@
 import { supabase } from ".";
 import { type Database } from "./types/supabase";
+import { getLocationId } from "./utils";
 
 export type DriverPostsResponse = Awaited<ReturnType<typeof fetchDriverPosts>>;
 export type DriverPostResponse = DriverPostsResponse[0];
@@ -15,8 +16,8 @@ export type DriverRequestInsert =
  * @returns list of driver posts
  */
 export async function fetchDriverPosts(searchParams?: {
-  departureId?: string;
-  destinationId?: string;
+  departure?: string;
+  destination?: string;
   date?: Date;
   seats?: number;
   sortBy?: "date" | "fee";
@@ -37,12 +38,14 @@ export async function fetchDriverPosts(searchParams?: {
     `);
 
   if (searchParams != null) {
-    if (searchParams.departureId) {
-      query = query.eq("departure_id", searchParams.departureId);
+    if (searchParams.departure) {
+      const departureID = await getLocationId(searchParams.departure);
+      if (departureID) query = query.eq("departure_id", departureID);
     }
 
-    if (searchParams.destinationId) {
-      query = query.eq("destination_id", searchParams.destinationId);
+    if (searchParams.destination) {
+      const destinationID = await getLocationId(searchParams.destination);
+      if (destinationID) query = query.eq("destination_id", destinationID);
     }
 
     if (searchParams.seats) {
