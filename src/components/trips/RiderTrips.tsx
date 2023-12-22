@@ -1,16 +1,16 @@
-import { View, ActivityIndicator, FlatList } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 import React, { useEffect, useState } from "react";
-import { fetchRiderRequests } from "../../lib/api/trips";
-import Request from "../../components/trips/Request";
+import { joloStyles } from "../../styles/constants";
+import { fetchRiderBookings } from "../../lib/api/bookings";
 
 export default function RiderTrips(): React.JSX.Element {
   const [requests, setRequests] = useState();
-  const [isLoading, setIsLoading] = useState(false);
+  const [, setIsLoading] = useState(false);
 
   useEffect(() => {
     const fetchRequests = async () => {
       setIsLoading(true);
-      const data = await fetchRiderRequests();
+      const data = await fetchRiderBookings();
       setRequests(data);
       setIsLoading(false);
     };
@@ -21,15 +21,17 @@ export default function RiderTrips(): React.JSX.Element {
 
   return (
     <View>
-      {isLoading ? (
-        <ActivityIndicator />
+      {requests ? (
+        <Text>Таньд одоогоор бүртгэлтэй унаа алга байна.</Text>
       ) : (
-        <FlatList
-          data={requests}
-          renderItem={({ item }) => <Request requestDetails={item}></Request>}
-          keyExtractor={(item) => item.id}
-        />
+        <Text style={styles.header}>Баталгаажсан унаанууд</Text>
       )}
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  header: {
+    fontSize: joloStyles.fontSize,
+  },
+});

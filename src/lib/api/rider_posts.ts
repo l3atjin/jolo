@@ -8,9 +8,6 @@ export type RiderPostInsert =
 export type RiderPostsResponse = Awaited<ReturnType<typeof fetchRiderPosts>>;
 export type RiderPostResponse = RiderPostsResponse[0];
 
-export type DriverRequestInsert =
-  Database["public"]["Tables"]["driver_requests"]["Insert"];
-
 /**
  * Insert a new rider post
  * @param riderPost

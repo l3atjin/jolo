@@ -1,6 +1,6 @@
-import { View, Text, StyleSheet } from "react-native";
 import React from "react";
-import Button from "../elements/Button";
+import { StyleSheet } from "react-native";
+import { Text, Button as PaperButton, Card } from "react-native-paper";
 
 interface RequestProps {
   requestDetails: {
@@ -13,34 +13,46 @@ interface RequestProps {
       phone_number: string;
     };
   };
+  onAccept: (bookingID: number) => void;
+  onReject: (bookingID: number) => void;
 }
 
 const Request: React.FC<RequestProps> = (props) => {
-  const handleAccept = () => {
-    // Implement your logic for accepting the request
-    console.log("Request accepted:", props.requestDetails);
-  };
-
-  const handleReject = () => {
-    // Implement your logic for rejecting the request
-    console.log("Request rejected:", props.requestDetails);
-  };
-
   return (
-    <View style={styles.container}>
-      <Text>Driver name: {props.requestDetails.driver_info.full_name}</Text>
-      {/* Display other request details here */}
-      <Button text="Accept" onPress={handleAccept} />
-      <Button text="Reject" onPress={handleReject} />
-    </View>
+    <Card style={styles.container}>
+      <Card.Content>
+        <Text>Жолоочийн Нэр: {props.requestDetails.id}</Text>
+        {/* Display other request details here */}
+      </Card.Content>
+      <Card.Actions style={styles.row}>
+        <PaperButton
+          onPress={() => {
+            props.onAccept(props.requestDetails.id);
+          }}
+        >
+          Зөвшөөрөх
+        </PaperButton>
+        <PaperButton
+          onPress={() => {
+            props.onReject(props.requestDetails.id);
+          }}
+        >
+          Үгүй
+        </PaperButton>
+      </Card.Actions>
+    </Card>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    padding: 10,
+    margin: 10,
     borderBottomWidth: 1,
     borderBottomColor: "#ccc",
+  },
+  row: {
+    flexDirection: "row",
+    justifyContent: "space-between",
   },
 });
 

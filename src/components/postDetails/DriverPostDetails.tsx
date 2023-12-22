@@ -2,11 +2,8 @@ import React from "react";
 import { Text, View, StyleSheet, Image } from "react-native";
 import Button from "../../components/elements/Button";
 import { supabase } from "../../lib/api";
-import {
-  type DriverPostResponse,
-  insertDriverRequest,
-  type DriverRequestInsert,
-} from "../../lib/api/driver_posts";
+import { type BookingInsert, insertBooking } from "../../lib/api/bookings";
+import { type DriverPostResponse } from "../../lib/api/driver_posts";
 
 interface DriverPostDetailsProps {
   postDetails: DriverPostResponse;
@@ -22,12 +19,12 @@ export default function DriverPostDetails({
       data: { user },
     } = await supabase.auth.getUser();
     if (user) {
-      const row: DriverRequestInsert = {
-        post_id: postDetails.id,
+      const row: BookingInsert = {
+        driver_post_id: postDetails.id,
         status: "REQUESTED",
         rider_id: user?.id,
       };
-      await insertDriverRequest(row);
+      await insertBooking(row);
     } else {
       console.error("User not logged in.");
     }

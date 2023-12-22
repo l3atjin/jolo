@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { type Session } from "@supabase/supabase-js";
 import { supabase } from "./src/lib/api/index";
 import { UserTypeProvider } from "./src/context/UserTypeProvider";
+import { PaperProvider } from "react-native-paper";
 
 // top level navigators
 import AuthNavigator from "./src/navigations/AuthNavigator";
@@ -22,10 +23,12 @@ export default function App(): React.JSX.Element {
     });
   }, []);
   return (
-    <UserTypeProvider>
-      <NavigationContainer>
-        {session && session?.user ? <MainNavigator /> : <AuthNavigator />}
-      </NavigationContainer>
-    </UserTypeProvider>
+    <PaperProvider>
+      <UserTypeProvider>
+        <NavigationContainer>
+          {session && session?.user ? <MainNavigator /> : <AuthNavigator />}
+        </NavigationContainer>
+      </UserTypeProvider>
+    </PaperProvider>
   );
 }
