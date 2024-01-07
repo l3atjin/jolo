@@ -2,6 +2,10 @@ import { supabase } from ".";
 import { type Database } from "./types/supabase";
 
 export type BookingInsert = Database["public"]["Tables"]["bookings"]["Insert"];
+export type BookingsRequestResponse = Awaited<
+  ReturnType<typeof fetchRiderRequests>
+>;
+export type BookingsResponse = Awaited<ReturnType<typeof fetchRiderBookings>>;
 
 // fetches all requested bookings
 export async function fetchRiderRequests() {
@@ -77,20 +81,15 @@ export async function fetchRiderBookings() {
     data: { user },
   } = await supabase.auth.getUser();
   if (user) {
-    // fix: it selects all rider requests
     const query = supabase
       .from("bookings")
-      .select(
-        `
-        id,
-        post_details: driver_posts (*),
-        rider_id,
-      `,
-      )
+      .select("*")
       .eq("rider_id", `${user.id}`)
       .eq("status", "CONFIRMED");
 
     const { data, error } = await query;
+
+    console.log(JSON.stringify(data, null, 2));
 
     if (error) {
       console.error("Error fetching bookings: ", error);

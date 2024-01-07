@@ -10,7 +10,9 @@ rules: {
   "@typescript-eslint/explicit-function-return-type": "warn",
   "@typescript-eslint/no-misused-promises": "off",
   "@typescript-eslint/strict-boolean-expressions" : "off",
-  "@typescript-eslint/prefer-optional-chain": "warn"
+  "@typescript-eslint/prefer-optional-chain": "warn",
+  "no-throw-literal": "off",
+  "@typescript-eslint/no-throw-literal": "off"
 }
 overrides:
   - files:

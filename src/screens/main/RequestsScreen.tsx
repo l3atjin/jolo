@@ -5,6 +5,7 @@ import {
   acceptRequest,
   fetchRiderRequests,
   rejectRequest,
+  type BookingsRequestResponse,
 } from "../../lib/api/bookings";
 
 export default function RequestsScreen(): React.JSX.Element {
@@ -15,7 +16,7 @@ export default function RequestsScreen(): React.JSX.Element {
   useEffect(() => {
     const fetchRequests = async () => {
       setIsLoading(true);
-      const data = await fetchRiderRequests();
+      const data: BookingsRequestResponse = await fetchRiderRequests();
       setRequests(data);
       setIsLoading(false);
     };

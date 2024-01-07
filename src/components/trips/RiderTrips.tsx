@@ -1,16 +1,19 @@
 import { View, Text, StyleSheet } from "react-native";
 import React, { useEffect, useState } from "react";
 import { joloStyles } from "../../styles/constants";
-import { fetchRiderBookings } from "../../lib/api/bookings";
+import {
+  type BookingsResponse,
+  fetchRiderBookings,
+} from "../../lib/api/bookings";
 
 export default function RiderTrips(): React.JSX.Element {
-  const [requests, setRequests] = useState();
+  const [requests, setRequests] = useState<BookingsResponse | null>();
   const [, setIsLoading] = useState(false);
 
   useEffect(() => {
     const fetchRequests = async () => {
       setIsLoading(true);
-      const data = await fetchRiderBookings();
+      const data: BookingsResponse = await fetchRiderBookings();
       setRequests(data);
       setIsLoading(false);
     };
