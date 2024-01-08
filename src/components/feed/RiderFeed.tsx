@@ -1,11 +1,12 @@
 import { useNavigation } from "@react-navigation/native";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   FlatList,
   View,
   StyleSheet,
   ActivityIndicator,
   Pressable,
+  Animated,
 } from "react-native";
 import {
   fetchDriverPosts,
@@ -41,6 +42,7 @@ export default function RiderFeed(): React.JSX.Element {
   const [posts, setPosts] = useState<DriverPostsResponse | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const navigation = useNavigation();
+  const pan = useRef(new Animated.ValueXY()).current;
 
   // initial fetch
   useEffect(() => {
@@ -70,6 +72,16 @@ export default function RiderFeed(): React.JSX.Element {
         ) : (
           <FlatList
             data={posts}
+            horizontal={true}
+            pagingEnabled={true}
+            scrollEnabled={true}
+            snapToAlignment={"center"}
+            onScroll={Animated.event(
+              [{ nativeEvent: { contentOffset: { x: pan.x } } }],
+              {
+                useNativeDriver: false,
+              },
+            )}
             renderItem={({ item }) => (
               <Pressable
                 onPress={() => {
